@@ -1,0 +1,343 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learning with Hsu | Japanese Vocabulary</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="app.js" defer></script>
+</head>
+
+<body>
+
+<header class="site-header">
+    <div class="container header-content">
+        <a href="#" class="logo">Learning with Hsu</a>
+        <span class="header-tag">Japanese Vocabulary Learning</span>
+    </div>
+</header>
+
+<main class="container">
+
+    <section class="welcome-section">
+        <p class="eyebrow">日本語を学びましょう</p>
+        <h1>Learn Japanese, One Word at a Time.</h1>
+        <p class="eyebrow" style="color: wheat;">Build your Japanese vocabulary with flashcards, quizzes, and practice.</p>
+    </section>
+
+    <section class="dashboard">
+        <div class="stat-card">
+            <span>Total Words</span>
+            <strong id="total-count">0</strong>
+        </div>
+
+        <div class="stat-card">
+            <span>Known Words</span>
+            <strong id="known-count">0</strong>
+        </div>
+
+        <div class="stat-card">
+            <span>Need Practice</span>
+            <strong id="practice-count">0</strong>
+        </div>
+
+        <div class="stat-card">
+            <span>New Words</span>
+            <strong id="new-count">0</strong>
+        </div>
+    </section>
+
+    <section class="progress-section">
+        <div class="progress-heading">
+            <span>Your learning progress</span>
+            <strong id="progress-percentage">0%</strong>
+        </div>
+        <div class="progress-track">
+            <div id="progress-bar" class="progress-fill"></div>
+        </div>
+    </section>
+
+    <nav class="main-nav">
+        <button class="nav-button active" data-section="flashcards">
+            Flashcards
+        </button>
+        <button class="nav-button" data-section="quiz">
+            Quiz
+        </button>
+        <button class="nav-button" data-section="library">
+            Vocabulary Library
+        </button>
+    </nav>
+
+    <!-- FLASHCARDS -->
+    <section id="flashcards" class="content-section active">
+
+        <div class="section-heading">
+            <div>
+                <h2>Japanese Flashcards</h2>
+                <p>Learn and remember Japanese vocabulary.</p>
+            </div>
+        </div>
+
+        <div class="filter-row">
+            <label>
+                JLPT Level
+                <select id="flash-level">
+                    <option value="ALL">All Levels</option>
+                    <option value="N5">N5</option>
+                    <option value="N4">N4</option>
+                    <option value="N3">N3</option>
+                    <option value="N2">N2</option>
+                    <option value="N1">N1</option>
+                </select>
+            </label>
+
+            <label>
+                Collection
+                <select id="flash-collection">
+                    <option value="ALL">All Words</option>
+                    <option value="NEW">New Words</option>
+                    <option value="PRACTICE">Need Practice</option>
+                    <option value="KNOWN">Known Words</option>
+                </select>
+            </label>
+        </div>
+
+        <div class="flashcard" id="flashcard">
+            <div class="flashcard-top">
+                <span id="flash-level-label">N5</span>
+                <span id="flash-number">1 / 1</span>
+            </div>
+
+            <div class="word-display">
+                <h2 id="flash-kanji">料理</h2>
+                <p id="flash-hiragana">りょうり</p>
+                <p id="flash-romaji">ryouri</p>
+            </div>
+
+            <button id="flash-audio" class="secondary-button">
+                🔊 Listen to Japanese
+            </button>
+
+            <div id="flash-answer" class="answer-area hidden">
+                <div class="meaning-box">
+                    <h3>English Meaning</h3>
+                    <p id="flash-english"></p>
+                </div>
+
+                <div class="meaning-box">
+                    <h3>Myanmar Meaning</h3>
+                    <p id="flash-myanmar"></p>
+                </div>
+
+                <div class="example-box">
+                    <h3>Example Sentence</h3>
+                    <p id="flash-example"></p>
+                    <p id="flash-example-romaji" class="muted"></p>
+                    <p id="flash-example-english"></p>
+                    <p id="flash-example-myanmar"></p>
+                    <button id="example-audio" class="text-button">
+                        🔊 Listen to example
+                    </button>
+                </div>
+            </div>
+
+            <button id="reveal-answer" class="primary-button">
+                Reveal Answer
+            </button>
+        </div>
+
+        <div class="flashcard-controls">
+            <button id="previous-word" class="secondary-button">
+                ← Previous
+            </button>
+
+            <button id="next-word" class="secondary-button">
+                Next →
+            </button>
+        </div>
+
+        <div class="knowledge-controls">
+            <button id="mark-practice" class="practice-button">
+                Need Practice
+            </button>
+
+            <button id="mark-known" class="known-button">
+                ✓ I Know It
+            </button>
+        </div>
+
+        <p id="flash-status" class="status-message"></p>
+    </section>
+
+    <!-- QUIZ -->
+    <section id="quiz" class="content-section">
+
+        <div class="section-heading">
+            <div>
+                <h2>Vocabulary Quiz</h2>
+                <p>Test your Japanese vocabulary knowledge.</p>
+            </div>
+        </div>
+
+        <div class="filter-row">
+            <label>
+                JLPT Level
+                <select id="quiz-level">
+                    <option value="ALL">All Levels</option>
+                    <option value="N5">N5</option>
+                    <option value="N4">N4</option>
+                    <option value="N3">N3</option>
+                    <option value="N2">N2</option>
+                    <option value="N1">N1</option>
+                </select>
+            </label>
+
+            <label>
+                Answer Language
+                <select id="quiz-language">
+                    <option value="english">English</option>
+                    <option value="myanmar">Myanmar</option>
+                </select>
+            </label>
+
+            <label>
+                Number of Questions
+                <select id="quiz-question-count">
+                    <option value="5">5 Questions</option>
+                    <option value="10" selected>10 Questions</option>
+                    <option value="20">20 Questions</option>
+                </select>
+            </label>
+        </div>
+
+        <button id="start-quiz" class="primary-button">
+            Start Quiz
+        </button>
+
+        <div id="quiz-area" class="quiz-area hidden">
+
+            <div class="quiz-progress">
+                <span id="quiz-question-number">Question 1</span>
+                <span id="quiz-score">Score: 0</span>
+            </div>
+
+            <div class="quiz-question">
+                <span id="quiz-word-level" class="level-label">N5</span>
+
+                <h2 id="quiz-kanji">休み</h2>
+                <p id="quiz-hiragana">やすみ</p>
+                <p id="quiz-romaji">yasumi</p>
+
+                <button id="quiz-audio" class="secondary-button">
+                    🔊 Listen to Japanese
+                </button>
+
+                <h3 id="quiz-instruction">
+                    Choose the correct English meaning.
+                </h3>
+            </div>
+
+            <div id="quiz-options" class="quiz-options"></div>
+
+            <p id="quiz-feedback" class="status-message"></p>
+
+            <button id="next-question" class="primary-button hidden">
+                Next Question
+            </button>
+
+        </div>
+
+        <div id="quiz-result" class="quiz-result hidden">
+            <h2>Quiz Completed!</h2>
+            <p id="quiz-final-score"></p>
+            <p id="quiz-final-message"></p>
+            <button id="restart-quiz" class="primary-button">
+                Try Again
+            </button>
+        </div>
+
+    </section>
+
+    <!-- VOCABULARY LIBRARY -->
+    <section id="library" class="content-section">
+
+        <div class="section-heading">
+            <div>
+                <h2>Vocabulary Library</h2>
+                <p>Search and review your Japanese vocabulary.</p>
+            </div>
+        </div>
+
+        <input
+            type="search"
+            id="library-search"
+            class="search-input"
+            placeholder="Search Japanese, English, Myanmar or romaji..."
+        >
+
+        <div class="filter-row">
+            <label>
+                JLPT Level
+                <select id="library-level">
+                    <option value="ALL">All Levels</option>
+                    <option value="N5">N5</option>
+                    <option value="N4">N4</option>
+                    <option value="N3">N3</option>
+                    <option value="N2">N2</option>
+                    <option value="N1">N1</option>
+                </select>
+            </label>
+
+            <label>
+                Category
+                <select id="library-category">
+                    <option value="ALL">All Categories</option>
+                </select>
+            </label>
+
+            <label>
+                Status
+                <select id="library-status">
+                    <option value="ALL">All Statuses</option>
+                    <option value="NEW">New</option>
+                    <option value="PRACTICE">Need Practice</option>
+                    <option value="KNOWN">Known</option>
+                </select>
+            </label>
+
+            <label>
+                Sort
+                <select id="library-sort">
+                    <option value="default">Default</option>
+                    <option value="japanese">Japanese A–Z</option>
+                    <option value="english">English A–Z</option>
+                </select>
+            </label>
+        </div>
+
+        <p id="library-count" class="muted"></p>
+
+        <div id="library-list" class="library-list"></div>
+
+        <div class="pagination">
+            <button id="library-previous" class="secondary-button">
+                ← Previous
+            </button>
+            <span id="library-page">Page 1</span>
+            <button id="library-next" class="secondary-button">
+                Next →
+            </button>
+        </div>
+
+    </section>
+
+</main>
+
+<footer class="mainfooter" style="background-color: #3263A7;">
+    <p>Learning with Hsu · 日本語を楽しく学びましょう</p>
+</footer>
+
+</body>
+</html>

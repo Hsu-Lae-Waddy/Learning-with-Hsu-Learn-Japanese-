@@ -41,6 +41,6 @@ This is still a work in progress, and I hope to keep improving it step by step.
 
 If you're learning Japanese too, feel free to give it a try! 💙
 
-🔗 Website: [Insert your website link here]
+🔗 Website: (https://hsu-lae-waddy.github.io/Learning-with-Hsu-Learn-Japanese-/)
 
 #LearningWithHsu #LearnJapanese #JapaneseVocabulary #JLPTN5
